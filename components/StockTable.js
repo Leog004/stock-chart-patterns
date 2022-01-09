@@ -14,12 +14,13 @@ export default function StockTable() {
     const getStockImage = (detail) => {
 
         finnhubClient.companyProfile2({'symbol': detail.name}, (error, data, response) => {
+            if(data){
+                detail.imageURL = data.logo;
+                detail.webURL = data.weburl;
+                detail.fullName = data.name;
 
-            detail.imageURL = data.logo;
-            detail.webURL = data.weburl;
-            detail.fullName = data.name;
-
-            setStocks((stocks) => [...stocks, detail]);
+                setStocks((stocks) => [...stocks, detail]);
+            }
         });
         
     }
@@ -100,15 +101,6 @@ export default function StockTable() {
                                             />
                                         ))
                                     }
-
-                                    {/* <StockList/>
-                                    <StockList/>
-                                    <StockList/>
-                                    <StockList/>
-                                    <StockList/>
-                                    <StockList/>
-                                    <StockList/>
-                                    <StockList/> */}
                                 </tbody>
                             </table>
                             <Pagination />

@@ -8,18 +8,18 @@ export default function Header({darkMode, setDarkMode}) {
             <div className='flex justify-between h-full items-center'>
                 {/* Left side, Icon Menu */}
                 <div className='w-1/6 flex h-full items-center justify-center gap-x-10 pl-28'>
-                    <img className='h-30 w-auto cursor-pointer' src={`/Logos/svg/StockListener_${darkMode ? 'black' : 'white'}.svg`} />
+                    <img className='h-30 w-auto cursor-pointer hover:scale-105 transition-all duration-100' src={`/Logos/svg/StockListener_${darkMode ? 'black' : 'white'}.svg`} />
                     {/* <img className='h-28 w-auto cursor-pointer' src={`/Logos/svg/stockListenerThumb.svg`} /> */}
                 </div>
 
                 {/* Middle, Top charts */}
                 <navigation className='w-full h-full relative '>
                     <nav className='w-full flex justify-center space-x-10 items-center self-center align-middle h-full pb-8'>
-                        <span className='text-base font-semibold dark:text-white cursor-pointer'>Home</span>
-                        <span className='text-base font-semibold dark:text-white cursor-pointer'>News</span>
-                        <span className='text-base font-semibold dark:text-white cursor-pointer'>Earnings</span>
-                        <span className='text-base font-semibold dark:text-white cursor-pointer'>Movers</span>
-                        <span className='text-base font-semibold dark:text-white cursor-pointer'>Upgrades | Downgrades</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer hover:scale-105  transition-all duration-100'>Home</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer hover:scale-105 transition-all duration-100'>News</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer hover:scale-105 transition-all duration-100'>Earnings</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer hover:scale-105 transition-all duration-100'>Movers</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer hover:scale-105 transition-all duration-100'>Upgrades | Downgrades</span>
                     </nav>
                     <WatchlistHeader/>
                 </navigation>
