@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { StockList } from '.'
+import { Pagination, StockList } from '.'
 
 const finnhub = require('finnhub');
 
@@ -11,6 +11,19 @@ export default function StockTable() {
 
     const [stocks, setStocks] = useState([]);
 
+    const getStockImage = (detail) => {
+
+        finnhubClient.companyProfile2({'symbol': detail.name}, (error, data, response) => {
+
+            detail.imageURL = data.logo;
+            detail.webURL = data.weburl;
+            detail.fullName = data.name;
+
+            setStocks((stocks) => [...stocks, detail]);
+        });
+        
+    }
+
     const runStocks = (data) => {
         data.map((el) => {
             finnhubClient.quote(`${el}`, (error, data, response) => {
@@ -20,16 +33,19 @@ export default function StockTable() {
                     price: data.c,
                     percentChange: data.dp,
                     priceChange: data.d,
-                    status: `${data.d >= 0 ? 'text-green-600' : 'text-red-600'}`
+                    status: `${data.d >= 0 ? 'text-green-600' : 'text-red-600'}`,
+                    imageURL: '',
+                    webURL: '',
+                    fullName: ''
                 };            
 
-                setStocks((stocks) => [...stocks, object]);
+                getStockImage(object);
             });       
         })
     }
 
     const getData = () => {
-        finnhubClient.companyPeers('AMD', (error, data, response) => {
+        finnhubClient.companyPeers('MSFT', (error, data, response) => {
             runStocks(data);
         })
     }
@@ -74,6 +90,8 @@ export default function StockTable() {
                                         stocks.length > 0 && stocks.map((el) => (
                                             <StockList
                                                 name = {el.name}
+                                                fullName = {el.fullName}
+                                                imageURL = {el.imageURL}
                                                 price = {el.price}
                                                 percentChange = {el.percentChange}
                                                 priceChange = {el.priceChange}
@@ -92,38 +110,7 @@ export default function StockTable() {
                                     <StockList/> */}
                                 </tbody>
                             </table>
-
-
-                            <div class="px-5 bg-white py-5 flex flex-col xs:flex-row items-center xs:justify-between dark:bg-[rgb(44,41,41)] ">
-                                <div class="flex items-center">
-                                    <button type="button" class="w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100">
-                                        <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1427 301l-531 531 531 531q19 19 19 45t-19 45l-166 166q-19 19-45 19t-45-19l-742-742q-19-19-19-45t19-45l742-742q19-19 45-19t45 19l166 166q19 19 19 45t-19 45z">
-                                            </path>
-                                        </svg>
-                                    </button>
-                                    <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-indigo-500 bg-white hover:bg-gray-100 ">
-                                        1
-                                    </button>
-                                    <button type="button" class="w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100">
-                                        2
-                                    </button>
-                                    <button type="button" class="w-full px-4 py-2 border-t border-b text-base text-gray-600 bg-white hover:bg-gray-100">
-                                        3
-                                    </button>
-                                    <button type="button" class="w-full px-4 py-2 border text-base text-gray-600 bg-white hover:bg-gray-100">
-                                        4
-                                    </button>
-                                    <button type="button" class="w-full p-4 border-t border-b border-r text-base  rounded-r-xl text-gray-600 bg-white hover:bg-gray-100">
-                                        <svg width="9" fill="currentColor" height="8" class="" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
-                                            </path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-
-
+                            <Pagination />
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function StockList({name, price, percentChange, priceChange, status}) {
+export default function StockList({name, fullName, imageURL, price, percentChange, priceChange, status}) {
     return (
         <tr>
         <td class="px-5 py-5 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-[rgb(44,41,41)]  text-sm">
@@ -10,10 +10,10 @@ export default function StockList({name, price, percentChange, priceChange, stat
                         {name}
                     </p>
                     <p class="text-gray-500 whitespace-no-wrap">
-                        {name}
+                        {fullName}
                     </p>
                 </div>
-                <img className='h-6 w-auto' src='https://arthurbrooks.com/wp-content/uploads/2020/02/microsoft-logo-transparent-png-8.png' />
+                <img className='h-6 w-auto' src={imageURL} />
             </div>
         </td>
         <td class="px-5 py-5 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-[rgb(44,41,41)]  text-sm">

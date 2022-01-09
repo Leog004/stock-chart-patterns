@@ -6,3 +6,4 @@ export { default as CardList } from './CardList';
 export { default as StockTable } from './StockTable';
 export { default as StockList } from './StockList';
 export { default as UpcomingEarnings } from './UpcomingEarnings';
+export { default as Pagination } from './Pagination';

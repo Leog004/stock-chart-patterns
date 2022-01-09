@@ -8,7 +8,8 @@ export default function Header({darkMode, setDarkMode}) {
             <div className='flex justify-between h-full items-center'>
                 {/* Left side, Icon Menu */}
                 <div className='w-1/6 flex h-full items-center justify-center gap-x-10 pl-28'>
-                    <img className='h-24 w-auto' src='/STOCKs.svg' />
+                    <img className='h-30 w-auto cursor-pointer' src={`/Logos/svg/StockListener_${darkMode ? 'black' : 'white'}.svg`} />
+                    {/* <img className='h-28 w-auto cursor-pointer' src={`/Logos/svg/stockListenerThumb.svg`} /> */}
                 </div>
 
                 {/* Middle, Top charts */}

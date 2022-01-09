@@ -50,7 +50,7 @@ export default function WatchlistHeader() {
         status: ''
     },
     {
-        name : 'BABA',
+        name : 'AAL',
         price: '',
         percentChange: '',
         priceChange: '',
