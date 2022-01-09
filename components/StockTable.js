@@ -27,26 +27,27 @@ export default function StockTable() {
     const runStocks = (data) => {
         data.map((el) => {
             finnhubClient.quote(`${el}`, (error, data, response) => {
+                if(data){
+                    let object = {
+                        name: `${el}`,
+                        price: data.c,
+                        percentChange: data.dp,
+                        priceChange: data.d,
+                        status: `${data.d >= 0 ? 'text-green-600' : 'text-red-600'}`,
+                        imageURL: '',
+                        webURL: '',
+                        fullName: ''
+                    };            
 
-                let object = {
-                    name: `${el}`,
-                    price: data.c,
-                    percentChange: data.dp,
-                    priceChange: data.d,
-                    status: `${data.d >= 0 ? 'text-green-600' : 'text-red-600'}`,
-                    imageURL: '',
-                    webURL: '',
-                    fullName: ''
-                };            
-
-                getStockImage(object);
+                    getStockImage(object);
+                }
             });       
         })
     }
 
     const getData = () => {
         finnhubClient.companyPeers('MSFT', (error, data, response) => {
-            runStocks(data);
+            if(data) runStocks(data);
         })
     }
 

@@ -15,11 +15,11 @@ export default function Header({darkMode, setDarkMode}) {
                 {/* Middle, Top charts */}
                 <navigation className='w-full h-full relative '>
                     <nav className='w-full flex justify-center space-x-10 items-center self-center align-middle h-full pb-8'>
-                        <span className='text-base font-semibold dark:text-white'>Home</span>
-                        <span className='text-base font-semibold dark:text-white'>News</span>
-                        <span className='text-base font-semibold dark:text-white'>Earnings</span>
-                        <span className='text-base font-semibold dark:text-white'>Movers</span>
-                        <span className='text-base font-semibold dark:text-white'>Upgrades | Downgrades</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer'>Home</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer'>News</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer'>Earnings</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer'>Movers</span>
+                        <span className='text-base font-semibold dark:text-white cursor-pointer'>Upgrades | Downgrades</span>
                     </nav>
                     <WatchlistHeader/>
                 </navigation>

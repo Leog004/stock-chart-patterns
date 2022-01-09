@@ -23,37 +23,37 @@ export default function WatchlistHeader() {
  const watchlist = [
      {
          name : 'ROKU',
-         price: '',
-         percentChange: '',
-         priceChange: '',
+         price: 0,
+         percentChange: 0,
+         priceChange: 0,
          status: ''
      },
      {
         name : 'MSFT',
-        price: '',
-        percentChange: '',
-        priceChange: '',
+        price: 0,
+        percentChange: 0,
+        priceChange: 0,
         status: ''
     },
     {
         name : 'AMD',
-        price: '',
-        percentChange: '',
-        priceChange: '',
+        price: 0,
+        percentChange: 0,
+        priceChange: 0,
         status: ''
     },
     {
         name : 'NIO',
-        price: '',
-        percentChange: '',
-        priceChange: '',
+        price: 0,
+        percentChange: 0,
+        priceChange: 0,
         status: ''
     },
     {
-        name : 'AAL',
-        price: '',
-        percentChange: '',
-        priceChange: '',
+        name : 'DIS',
+        price: 0,
+        percentChange: 0,
+        priceChange: 0,
         status: ''
     }
  ];
@@ -66,19 +66,21 @@ export default function WatchlistHeader() {
     watchlist.map((el) => {
         finnhubClient.quote(`${el.name}`, (error, data, response) => {
 
-            let object = {
-                name: `${el.name}`,
-                price: data.c,
-                percentChange: data.dp,
-                priceChange: data.d,
-                status: `${data.d >= 0 ? 'text-green-600' : 'text-red-600'}`
-            };            
-    
-            setStocks((stocks) =>
-                stocks.map((item) => {
-                    return item.name === el.name ? item = object : item = item;
-                })
-            );
+            if(data){
+                let object = {
+                    name: `${el.name}`,
+                    price: data.c,
+                    percentChange: data.dp,
+                    priceChange: data.d,
+                    status: `${data.d >= 0 ? 'text-green-600' : 'text-red-600'}`
+                };            
+        
+                setStocks((stocks) =>
+                    stocks.map((item) => {
+                        return item.name === el.name ? item = object : item = item;
+                    })
+                );
+            }
         });       
     });
 
