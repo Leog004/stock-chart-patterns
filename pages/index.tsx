@@ -1,10 +1,11 @@
 import Head from 'next/head'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {CardList, Footer, Header, StockTable, UpcomingEarnings} from '../components'
 
 export default function Home() {
 
   const [darkMode, setDarkMode] = useState(false)
+
   
   return (
     <main className={`${darkMode && 'dark'}`}>

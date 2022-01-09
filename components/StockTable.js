@@ -1,7 +1,43 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { StockList } from '.'
 
+const finnhub = require('finnhub');
+
+const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+api_key.apiKey = "c3qdr0aad3i9vt5tmbkg" // Replace this
+const finnhubClient = new finnhub.DefaultApi()
+
 export default function StockTable() {
+
+    const [stocks, setStocks] = useState([]);
+
+    const runStocks = (data) => {
+        data.map((el) => {
+            finnhubClient.quote(`${el}`, (error, data, response) => {
+
+                let object = {
+                    name: `${el}`,
+                    price: data.c,
+                    percentChange: data.dp,
+                    priceChange: data.d,
+                    status: `${data.d >= 0 ? 'text-green-600' : 'text-red-600'}`
+                };            
+
+                setStocks((stocks) => [...stocks, object]);
+            });       
+        })
+    }
+
+    const getData = () => {
+        finnhubClient.companyPeers('AMD', (error, data, response) => {
+            runStocks(data);
+        })
+    }
+
+    useEffect(() => {
+        getData();
+    }, [])
+
     return (
             <div class="container mx-auto px-4">
                 <div class="py-8">
@@ -34,14 +70,26 @@ export default function StockTable() {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {
+                                        stocks.length > 0 && stocks.map((el) => (
+                                            <StockList
+                                                name = {el.name}
+                                                price = {el.price}
+                                                percentChange = {el.percentChange}
+                                                priceChange = {el.priceChange}
+                                                status = {el.status}
+                                            />
+                                        ))
+                                    }
+
+                                    {/* <StockList/>
                                     <StockList/>
                                     <StockList/>
                                     <StockList/>
                                     <StockList/>
                                     <StockList/>
                                     <StockList/>
-                                    <StockList/>
-                                    <StockList/>
+                                    <StockList/> */}
                                 </tbody>
                             </table>
 

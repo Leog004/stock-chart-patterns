@@ -94,7 +94,7 @@ export default function UpcomingEarnings() {
                                     <td class="py-3 px-2 md:px-3  hover:text-blue-500 text-center cursor-pointer">
                                         7
                                     </td>
-                                    <td class="py-3 px-2 md:px-3 md:px-2 relative lg:px-3 hover:text-blue-500 text-center cursor-pointer">
+                                    <td class="py-3 px-2 md:px-3 relative lg:px-3 hover:text-blue-500 text-center cursor-pointer">
                                         8
                                         <span class="absolute rounded-full h-2 w-2 bg-yellow-500 bottom-0 left-1/2 transform -translate-x-1/2">
                                         </span>

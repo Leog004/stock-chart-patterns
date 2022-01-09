@@ -1,16 +1,16 @@
 import React from 'react'
 
-export default function StockList() {
+export default function StockList({name, price, percentChange, priceChange, status}) {
     return (
         <tr>
         <td class="px-5 py-5 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-[rgb(44,41,41)]  text-sm">
             <div class="flex items-center justify-between">
                 <div class="ml-3">
                     <p class="text-gray-900 dark:text-gray-200 font-semibold text-lg whitespace-no-wrap">
-                        MSFT
+                        {name}
                     </p>
                     <p class="text-gray-500 whitespace-no-wrap">
-                        Microsoft
+                        {name}
                     </p>
                 </div>
                 <img className='h-6 w-auto' src='https://arthurbrooks.com/wp-content/uploads/2020/02/microsoft-logo-transparent-png-8.png' />
@@ -18,12 +18,12 @@ export default function StockList() {
         </td>
         <td class="px-5 py-5 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-[rgb(44,41,41)]  text-sm">
             <p class="text-gray-900 whitespace-no-wrap dark:text-gray-200">
-                $290.21
+                ${price}
             </p>
         </td>
         <td class="px-5 py-5 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-[rgb(44,41,41)]  text-sm">
             <p class="text-gray-900 whitespace-no-wrap dark:text-gray-200">
-                3.4%
+                {percentChange}%
             </p>
         </td>
         <td class="px-5 py-5 border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-[rgb(44,41,41)]  text-sm">
